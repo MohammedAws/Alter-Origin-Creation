@@ -1,15 +1,21 @@
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="6XSYQL6M3ZMMC">
-<table>
-<tr><td><input type="hidden" name="on0" value="Plans">Plans</td></tr><tr><td><select name="os0">
-	<option value="Basic">Basic : $5.00 USD - weekly</option>
-	<option value="Standard">Standard : $10.00 USD - monthly</option>
-	<option value="Premiem">Premiem : $13.00 USD - monthly</option>
-	<option value="Deluxe Edition">Deluxe Edition : $45.00 USD - yearly</option>
-</select> </td></tr>
-</table>
-<input type="hidden" name="currency_code" value="USD">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+<div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AelWsmg_xNwoOkZbEWVX2mobTg8MYKilIwlPMusJMIiV-BHw_bSqkm95B30bEZD3vfiBU4y8zTGm3k5w&vault=true" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'subscribe',
+          
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          'plan_id': 'P-45016762VR3649323L2JA5OQ'
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID);
+      }
+  }).render('#paypal-button-container');
+</script>
